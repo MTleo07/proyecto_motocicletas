@@ -28,7 +28,7 @@ public class MotorbikeService {
             return motorbikeRepository.salvarMotorbike(motorbike);
         } else {
             Optional<Motorbike> motorbikeAuxiliar = motorbikeRepository.obtenerMotorbikeId(motorbike.getId());
-            if (motorbikeAuxiliar.isEmpty()) {
+            if (motorbikeAuxiliar.isPresent()) {
                 return motorbikeRepository.salvarMotorbike(motorbike);
             } else {
                 return motorbike;
@@ -40,7 +40,7 @@ public class MotorbikeService {
     public Motorbike updateMotorbike(Motorbike motorbike) {
         if (motorbike.getId() != null) {
             Optional<Motorbike> e = motorbikeRepository.obtenerMotorbikeId(motorbike.getId());
-            if (!e.isEmpty()) {
+            if (!e.isPresent()) {
                 if (motorbike.getYear() != null) {
                     e.get().setYear(motorbike.getYear());
                 }

@@ -28,7 +28,7 @@ public class MessageService {
             return messageRepository.salvarMessage(message);
         } else {
             Optional<Message> messageAuxiliar = messageRepository.obtenerMessageId(message.getIdMessage());
-            if (messageAuxiliar.isEmpty()) {
+            if (messageAuxiliar.isPresent()) {
                 return messageRepository.salvarMessage(message);
             } else {
                 return message;
@@ -40,7 +40,7 @@ public class MessageService {
     public Message updateMessage(Message message) {
         if (message.getIdMessage() != null) {
             Optional<Message> e = messageRepository.obtenerMessageId(message.getIdMessage());
-            if (!e.isEmpty()) {
+            if (!e.isPresent()) {
                 if (message.getMessageText() != null) {
                     e.get().setMessageText(message.getMessageText());
                 }

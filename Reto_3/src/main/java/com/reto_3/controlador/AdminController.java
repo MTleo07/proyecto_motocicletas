@@ -18,7 +18,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/all")
+    @GetMapping("/api/Admin")
     public List<Admin> obtenerAdminCompleta() {
         return adminService.obtenerAdminCompleta();
     }

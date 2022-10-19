@@ -28,7 +28,7 @@ public class ClientService {
             return clientRepository.salvarClient(client);
         } else {
             Optional<Client> clientAuxiliar = clientRepository.obtenerClientId(client.getIdClient());
-            if (clientAuxiliar.isPresent()) {
+            if (!clientAuxiliar.isPresent()) {
                 return clientRepository.salvarClient(client);
             } else {
                 return client;
@@ -40,7 +40,7 @@ public class ClientService {
     public Client updateClient(Client client) {
         if (client.getIdClient() != null) {
             Optional<Client> e = clientRepository.obtenerClientId(client.getIdClient());
-            if (!e.isPresent()) {
+            if (e.isPresent()) {
                 
                  if(client.getEmail()!=null){
                  e.get().setEmail(client.getEmail());

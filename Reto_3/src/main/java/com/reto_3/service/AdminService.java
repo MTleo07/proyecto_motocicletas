@@ -28,7 +28,7 @@ public class AdminService {
             return adminRepository.salvarAdmin(admin);
         } else {
             Optional<Admin> adminAuxiliar = adminRepository.obtenerAdminId(admin.getIdAdmin());
-            if (adminAuxiliar.isPresent()) {
+            if (!adminAuxiliar.isPresent()) {
                 return adminRepository.salvarAdmin(admin);
             } else {
                 return admin;
@@ -40,7 +40,7 @@ public class AdminService {
     public Admin updateAdmin(Admin admin) {
         if (admin.getIdAdmin() != null) {
             Optional<Admin> e = adminRepository.obtenerAdminId(admin.getIdAdmin());
-            if (!e.isPresent()) {
+            if (e.isPresent()) {
                 if (admin.getName() != null) {
                     e.get().setName(admin.getName());
                 }

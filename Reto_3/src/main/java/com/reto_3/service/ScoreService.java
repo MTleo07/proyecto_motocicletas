@@ -28,7 +28,7 @@ public class ScoreService {
             return scoreRepository.salvarScore(score);
         } else {
             Optional<Score> scoreAuxiliar = scoreRepository.obtenerScoreId(score.getIdScore());
-            if (scoreAuxiliar.isPresent()) {
+            if (!scoreAuxiliar.isPresent()) {
                 return scoreRepository.salvarScore(score);
             } else {
                 return score;
@@ -40,7 +40,7 @@ public class ScoreService {
     public Score updateScore(Score score) {
         if (score.getIdScore() != null) {
             Optional<Score> e = scoreRepository.obtenerScoreId(score.getIdScore());
-            if (!e.isPresent()) {
+            if (e.isPresent()) {
                 if (score.getStars() != null) {
                     e.get().setStars(score.getStars());
                 }

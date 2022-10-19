@@ -29,7 +29,7 @@ public class ReservationService {
         } else {
             Optional<Reservation> reservationAuxiliar = reservationRepository
                     .obtenerReservationId(reservation.getIdReservation());
-            if (reservationAuxiliar.isPresent()) {
+            if (!reservationAuxiliar.isPresent()) {
                 return reservationRepository.salvarReservation(reservation);
             } else {
                 return reservation;
@@ -41,7 +41,7 @@ public class ReservationService {
     public Reservation updateReservation(Reservation reservation) {
         if (reservation.getIdReservation() != null) {
             Optional<Reservation> e = reservationRepository.obtenerReservationId(reservation.getIdReservation());
-            if (!e.isPresent()) {
+            if (e.isPresent()) {
                 if (reservation.getStartDate() != null) {
                     e.get().setStartDate(reservation.getStartDate());
                 }

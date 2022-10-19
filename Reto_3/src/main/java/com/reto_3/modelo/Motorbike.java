@@ -6,7 +6,11 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.*;
-
+/**
+ *
+ *
+ * @author Leonardo Fabio Jejen Diaz
+ */
 @Entity
 @Table(name = "motorbike")
 @Getter
